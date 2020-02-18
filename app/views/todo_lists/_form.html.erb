@@ -23,6 +23,15 @@
     <%= f.label :deadline %><br>
     <%= f.text_field :deadline %>
   </div>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image  %>
+    <% if @todo_list.image? %>
+      <div class="attached_image">
+        <%= image_tag @todo_list.image.url %>
+      </div>
+    <% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

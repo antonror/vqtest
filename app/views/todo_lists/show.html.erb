@@ -2,6 +2,9 @@
 
 <h2 class="todo_list_title"><%= @todo_list.title %></h2>
 <p class="todo_list_sub_title"><%= @todo_list.description %></p>
+<div class="text-center">
+  <%= link_to image_tag(@todo_list.image.url, class: 'media-object'), @todo_list.image.url, target: '_blank' %>
+</div>
 
 <div id="todo_items_wrapper">
   <%= render @todo_list.todo_items %>
