@@ -34,6 +34,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap'
 gem 'devise'
 gem 'paperclip'
+gem 'omniauth-facebook'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
