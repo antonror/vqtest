@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20200218211142) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "todo_items", force: :cascade do |t|
     t.string   "content"
     t.integer  "todo_list_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.datetime "completed_at"
-    t.index ["todo_list_id"], name: "index_todo_items_on_todo_list_id"
+    t.index ["todo_list_id"], name: "index_todo_items_on_todo_list_id", using: :btree
   end
 
   create_table "todo_lists", force: :cascade do |t|
@@ -41,8 +44,9 @@ ActiveRecord::Schema.define(version: 20200218211142) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "todo_items", "todo_lists"
 end
