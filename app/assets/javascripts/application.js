@@ -15,3 +15,9 @@
 //= require turbolinks
 //= require bootstrap-datepicker
 //= require_tree .
+
+$(function() {
+  setTimeout(function(){
+    $('#flash_notice').slideUp(500);
+  }, 1000);
+});

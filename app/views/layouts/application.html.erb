@@ -12,6 +12,28 @@
   </head>
 
   <body>
+    <% flash.each do |_, msg| %>
+      <%= content_tag :div, id: "flash_notice", class: 'alert alert-info' do %>
+        <%= msg %>
+      <% end %>
+    <% end %>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Todo App</a>
+      <div class="collapse navbar-collapse justify-content-md-center">
+        <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link">Signed in as <b><%= current_user.email %></b></a>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </nav>
+
     <div class="container">
       <%= yield %>
     </div>
