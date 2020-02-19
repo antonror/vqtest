@@ -35,6 +35,7 @@ gem 'bootstrap'
 gem 'devise'
 gem 'paperclip'
 gem 'omniauth-facebook'
+gem 'cancan'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

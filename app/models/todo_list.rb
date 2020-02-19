@@ -1,6 +1,7 @@
 class TodoList < ApplicationRecord
   has_many :todo_items, dependent: :destroy
-  validates :title, :description, :deadline, presence: :true
+  belongs_to :user
+  validates :user, :title, :description, :deadline, presence: :true
 
   has_attached_file :image
   validates_attachment :image,

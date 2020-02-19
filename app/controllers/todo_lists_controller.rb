@@ -4,7 +4,7 @@ class TodoListsController < ApplicationController
   # GET /todo_lists
   # GET /todo_lists.json
   def index
-    @todo_lists = TodoList.all
+    @todo_lists = TodoList.accessible_by(current_ability)
   end
 
   # GET /todo_lists/1
@@ -25,6 +25,8 @@ class TodoListsController < ApplicationController
   # POST /todo_lists.json
   def create
     @todo_list = TodoList.new(todo_list_params)
+    @todo_list.user = current_user
+    authorize! :create, @todo_list
 
     respond_to do |format|
       if @todo_list.save
@@ -40,6 +42,7 @@ class TodoListsController < ApplicationController
   # PATCH/PUT /todo_lists/1
   # PATCH/PUT /todo_lists/1.json
   def update
+    authorize! :update, @todo_list
     respond_to do |format|
       if @todo_list.update(todo_list_params)
         format.html { redirect_to @todo_list, notice: 'Todo list was successfully updated.' }
@@ -54,6 +57,7 @@ class TodoListsController < ApplicationController
   # DELETE /todo_lists/1
   # DELETE /todo_lists/1.json
   def destroy
+    authorize! :destroy, @todo_list
     @todo_list.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Todo list was successfully destroyed.' }
